@@ -3,33 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../script.js" defer></script>
     <link rel="stylesheet" href="dashboard.css">
-    <title>BeeMart</title>
+    <title>BeeMart - Cashier</title>
 </head>
 <body>
     <nav class="navbar">
-        <h2>Dashboard Cashier</h2>
-
-        <button onclick="goTo('../index.html')">Logout</button>
-        <!-- <a href="../index.html">Logout</a> -->
+        <h2>BeeMart</h2>
+        <div class="navbar-info">
+            <span id="currentDateTime"></span>
+            <span id="cashierName"></span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
     </nav>
 
-    <section class="dashboard">
-        <table class="dashboard-table">
-            <tr>
-                <th>#</th>
-                <th>Invoice Number</th>
-                <th>Item Name</th>
-                <th>Qty.</th>   
-                <th>Purchase Method</th>
-                <th>Total</th>
-                <th>Timestamp</th>
-            </tr>
-            <tr>
+    <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="switchTab('new-transaction')">New Transaction</button>
+            <button class="tab-btn" onclick="switchTab('history-transaction')">History Transaction</button>
+        </div>
 
-            </tr>
-        </table>
-    </section>
+        <!-- New Transaction Tab -->
+        <div id="new-transaction" class="tab-content active">
+            <div class="invoice-section">
+                <h3>Invoice No: <span id="invoiceNumber"></span></h3>
+            </div>
+
+            <!-- Search Section -->
+            <div class="search-section">
+                <label>Cari Barang (Ketik: Apel / Susu, lalu tekan Enter)</label>
+                <input type="text" id="searchInput" placeholder="Ketik nama barang" onkeypress="handleSearch(event)">
+            </div>
+
+            <!-- Search Results Table -->
+            <div id="searchResults" class="search-results" style="display: none;">
+                <h4>Cari Barang (Ketik: Apel / Susu, lalu tekan Enter)</h4>
+                <table class="search-table">
+                    <thead>
+                        <tr>
+                            <th>Nama Barang</th>
+                            <th>Berat</th>
+                            <th>Stock</th>
+                            <th>Harga</th>
+                            <th>Diskon</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="searchResultsBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Shopping Cart Section -->
+            <div class="cart-section">
+                <h3>Daftar Belanjaan</h3>
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Nama Barang</th>
+                            <th>Harga</th>
+                            <th>Diskon</th>
+                            <th>Qty</th>
+                            <th>Subtotal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartBody">
+                    </tbody>
+                </table>
+
+                <div class="total-section">
+                    <h2>Total: <span id="totalAmount">Rp 0</span></h2>
+                </div>
+
+                <div class="payment-section">
+                    <label for="paymentMethod">Metode Pembayaran:</label>
+                    <select id="paymentMethod">
+                        <option value="">Loading...</option>
+                    </select>
+                </div>
+
+                <button class="submit-btn" onclick="submitTransaction()">Submit Transaksi</button>
+            </div>
+        </div>
+
+        <!-- History Transaction Tab -->
+        <div id="history-transaction" class="tab-content">
+            <div class="history-section">
+                <h3>Riwayat Transaksi</h3>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Invoice Number</th>
+                            <th>Item Name</th>
+                            <th>Qty.</th>
+                            <th>Purchase Method</th>
+                            <th>Total</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Product Selection -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Barang Terpilih: <span id="modalProductName"></span></h3>
+            <div class="modal-info">
+                <p>Harga Satuan: <span id="modalProductPrice"></span></p>
+                <p>Sisa Stock: <span id="modalProductStock"></span></p>
+            </div>
+            <div class="modal-input">
+                <label for="qtyInput">Qty:</label>
+                <input type="number" id="qtyInput" min="1" value="1">
+            </div>
+            <button class="modal-btn" onclick="addToCart()">Masukkan ke Keranjang</button>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
 </body>
 </html>

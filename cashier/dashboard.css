@@ -1,49 +1,342 @@
-body {
+* {
     margin: 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #E6F2FF;
 }
 
+/* Navbar */
 .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: #1c78da;
+    background-color: #5B9BD5;
+    color: white;
+    padding: 15px 30px;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 24px;
-    padding: 12px 24px;
-
-    button {
-        background-color: #df2121;
-        text-decoration: none;
-        font-weight: bold;
-        height: 30px;
-        border-radius: px;
-        color: #FFFFFF;
-        margin-left: auto;
-    }
-
-    button:hover {
-        text-decoration: underline;
-    }
 }
 
-.dashboard {
-    margin: 25px 50px 0px;
-    height: 500px;
-    background-color: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 30px;
+.navbar h2 {
+    font-size: 24px;
 }
 
-.dashboard-table {
-    margin: 20px;
-    stroke-width: 10px;
+.navbar-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-info span {
+    font-size: 14px;
+}
+
+.logout-btn {
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background-color: #C0392B;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tab Navigation */
+.tab-navigation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 12px 30px;
+    background-color: #D6E9F8;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px 5px 0 0;
+    font-weight: 500;
+}
+
+.tab-btn.active {
+    background-color: #5B9BD5;
+    color: white;
+}
+
+.tab-btn:hover {
+    background-color: #4A90C5;
+    color: white;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Invoice Section */
+.invoice-section {
+    background-color: #D6E9F8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.invoice-section h3 {
+    color: #2C5F8D;
+    font-size: 18px;
+}
+
+/* Search Section */
+.search-section {
+    margin-bottom: 20px;
+}
+
+.search-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.search-section input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Search Results */
+.search-results {
+    margin-bottom: 30px;
+}
+
+.search-results h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Tables */
+.search-table,
+.cart-table,
+.history-table {
+    width: 100%;
     border-collapse: collapse;
-    
-    td, th {
-        border: 1px solid #000000;
-    }
+    margin-bottom: 20px;
+}
+
+.search-table th,
+.cart-table th,
+.history-table th {
+    background-color: #5B9BD5;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.search-table td,
+.cart-table td,
+.history-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.search-table tbody tr:hover,
+.cart-table tbody tr:hover,
+.history-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Buttons */
+.btn-pilih {
+    background-color: #5B9BD5;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-pilih:hover {
+    background-color: #4A90C5;
+}
+
+.btn-hapus {
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-hapus:hover {
+    background-color: #C0392B;
+}
+
+/* Cart Section */
+.cart-section {
+    margin-top: 30px;
+}
+
+.cart-section h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.total-section {
+    text-align: right;
+    margin: 20px 0;
+}
+
+.total-section h2 {
+    color: #5B9BD5;
+    font-size: 28px;
+}
+
+.payment-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.payment-section label {
+    font-weight: 500;
+}
+
+.payment-section select {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #5B9BD5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #4A90C5;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #D6E9F8;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.modal-content h3 {
+    color: #2C5F8D;
+    margin-bottom: 20px;
+}
+
+.modal-info {
+    margin-bottom: 20px;
+}
+
+.modal-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.modal-input {
+    margin-bottom: 20px;
+}
+
+.modal-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.modal-input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #5B9BD5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-btn:hover {
+    background-color: #4A90C5;
+}
+
+/* History Section */
+.history-section h3 {
+    margin-bottom: 15px;
+    color: #333;
 }

@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeeMart</title>
+    <title>BeeMart - Register</title>
     <link rel="stylesheet" href="style.css">
-    <script src="../script.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="auth">
-
-        <form class="auth-form" onsubmit="goTo(index.html)" method="POST">
+        <form class="auth-form" onsubmit="handleRegister(event)" method="POST">
             <h2>Register Akun</h2>            
-            <input type="text" name="Username" placeholder="Username" required>
-            <input type="text" name="Fullname" placeholder="Full Name" required>
-
-            <input type="password" name="Password" placeholder="Password" required>
-            <input type="password" name="Re-Password" placeholder="Re-Password" required>
+            <input type="text" id="username" name="Username" placeholder="Username" required>
+            <input type="text" id="fullName" name="Fullname" placeholder="Full Name" required>
+            <input type="password" id="password" name="Password" placeholder="Password" required>
+            <input type="password" id="rePassword" name="Re-Password" placeholder="Re-Password" required>
 
             <select name="role" id="role" required>
                 <option value="" disabled selected>Select Role</option>
-                <option value="cashier">Cashier</option>
-                <option value="admin">Admin</option>
+                <option value="Cashier">Cashier</option>
+                <option value="Admin">Admin</option>
             </select>
 
             <button type="submit">Submit</button>
-            <p>Sudah punya akun? <a href="index.html">Login</a> </p>
+            <p>Sudah punya akun? <a href="index.html">Login</a></p>
         </form>
     </div>
 </body>
