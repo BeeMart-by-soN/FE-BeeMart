@@ -1,22 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeeMart - Login</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="auth">
-        <form class="auth-form" onsubmit="afterLogin(event)" method="POST">
-            <h2>BeeMart Login</h2>
-            <input type="text" id="username" name="Username" placeholder="Username" required>
-            <input type="password" id="password" name="Password" placeholder="Password" required>
+        <form class="auth-form" onsubmit="handleLogin(event)">
+            <h2 class="auth-title">BeeMart Login</h2>
 
-            <button type="submit">Login</button>
-            <p>Belum punya akun? <a href="register.html">Register</a></p>
+            <div class="field">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="Username" placeholder="Username" autocomplete="username" required>
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="Password" placeholder="Password" autocomplete="current-password" required>
+            </div>
+
+            <div class="field">
+                <label for="role">Role</label>
+                <select id="role" name="Role" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Cashier" selected>Kasir</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-primary">Login</button>
+            <p class="auth-link">Belum punya akun? <a href="register.html">Register</a></p>
         </form>
     </div>
+
+    <script src="common.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

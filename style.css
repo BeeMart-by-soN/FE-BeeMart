@@ -1,41 +1,150 @@
-body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: #E6F2FF;
+/* =========================================================================
+   style.css — halaman Login & Register (BeeMart)
+   Tema: latar biru muda, kartu putih berbayang, garis aksen biru di atas,
+   judul biru, tombol biru. Tanpa Bootstrap.
+   ========================================================================= */
+
+:root {
+    --blue:        #1c78da;
+    --blue-light:  #E6F2FF;
+    --blue-soft:   #D6E9F8;
+    --blue-dark:   #2C5F8D;
+    --red:         #E74C3C;
+    --red-dark:    #C0392B;
+    --text:        #333;
 }
 
-.auth {
-    margin: 150px 400px;
-    height: 500px;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--blue-light);
+    color: var(--text);
+    margin: 0;
+    min-height: 100vh;
     display: flex;
-    border-radius: 20px;
-    flex-direction: column;
-    /* background-color: gray; */
-    justify-content: center;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+}
+
+/* ---------- Auth card ---------- */
+.auth {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
     width: 100%;
-    max-width: 300px;
-    padding: 24px;
+    max-width: 360px;
+    padding: 28px 26px 30px;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-top: 5px solid #0099FF;
-
-    input, select, button{
-        height: 30px;
-        border-radius: 5px;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: 16px;
-    }
-
-    button {
-        background-color: #0099FF;
-        color: #fff;
-    }
+    box-shadow: 0 6px 20px rgba(28, 120, 218, 0.18);
+    border-top: 5px solid var(--blue);
 }
+
+.auth-title {
+    color: var(--blue);
+    font-size: 24px;
+    margin: 0 0 6px;
+    text-align: center;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blue-dark);
+}
+
+.field input,
+.field select {
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #cdd9e5;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(28, 120, 218, .15);
+}
+
+.btn-primary {
+    height: 42px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--blue);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .15s;
+}
+
+.btn-primary:hover { background-color: #1567c2; }
+.btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+
+.auth-link {
+    text-align: center;
+    font-size: 14px;
+    margin: 0;
+}
+
+.auth-link a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-link a:hover { text-decoration: underline; }
+
+/* ---------- Toast (shared, dipakai semua halaman) ---------- */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 360px;
+}
+
+.toast {
+    min-width: 240px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-success { background-color: #27ae60; }
+.toast-error   { background-color: var(--red); }
+.toast-info    { background-color: var(--blue); }

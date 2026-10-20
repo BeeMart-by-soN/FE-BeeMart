@@ -1,0 +1,337 @@
+/* =========================================================================
+   dashboard.css — halaman New Transaction & History (BeeMart)
+   Tema biru, tanpa Bootstrap. Dipakai bersama Cashier & Admin.
+   ========================================================================= */
+
+:root {
+    --blue:        #1c78da;
+    --blue-light:  #E6F2FF;
+    --blue-soft:   #D6E9F8;
+    --blue-dark:   #2C5F8D;
+    --red:         #E74C3C;
+    --red-dark:    #C0392B;
+    --gold:        #F1C40F;
+    --text:        #333;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--blue-light);
+    color: var(--text);
+}
+
+/* ---------------------------- Navbar ---------------------------- */
+.navbar {
+    background-color: var(--blue);
+    color: #fff;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+.navbar-info {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 14px;
+}
+
+.logout-btn {
+    background-color: var(--red);
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.logout-btn:hover { background-color: var(--red-dark); }
+
+/* ------------------------- Registration button -------------------- */
+/* Ditampilkan hanya untuk role Admin (diatur oleh dashboard.js). */
+.register-btn {
+    display: none;
+    background-color: #fff;
+    color: var(--blue);
+    border: 1px solid #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.register-btn:hover { background-color: var(--blue-soft); }
+
+/* ---------------------------- Container ---------------------------- */
+.container {
+    max-width: 1100px;
+    margin: 24px auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 4px 16px rgba(28, 120, 218, .12);
+}
+
+/* ---------------------------- Tabs ---------------------------- */
+.tab-navigation { display: flex; gap: 8px; margin-bottom: 20px; }
+
+.tab-btn {
+    padding: 10px 26px;
+    background: var(--blue-soft);
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 8px 8px 0 0;
+    font-weight: 600;
+    color: var(--blue-dark);
+}
+.tab-btn.active { background: var(--blue); color: #fff; }
+.tab-btn:hover:not(.active) { background: #c4def0; }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ---------------------------- Invoice ---------------------------- */
+.invoice-section {
+    background-color: var(--blue-soft);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+}
+.invoice-section h3 {
+    color: var(--blue-dark);
+    font-size: 16px;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+#invoiceNumber { font-weight: 700; }
+
+/* ---------------------------- Search ---------------------------- */
+.search-section { margin-bottom: 18px; }
+.search-section label { display: block; margin-bottom: 6px; font-weight: 600; color: var(--blue-dark); }
+.search-section input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #c4d3e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+.search-section input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(28,120,218,.15); }
+
+.search-results { margin-bottom: 24px; }
+
+/* ---------------------------- Tables ---------------------------- */
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 18px;
+    background: #fff;
+}
+.data-table th {
+    background: var(--blue);
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+}
+.data-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #e6eef5;
+    font-size: 14px;
+}
+.data-table tbody tr:hover { background-color: #f3f9ff; }
+.empty-row { text-align: center; color: #999; font-style: italic; }
+
+/* ---------------------------- Buttons ---------------------------- */
+.btn-pilih {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.btn-pilih:hover { background: #1567c2; }
+
+.btn-hapus {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.btn-hapus:hover { background: var(--red-dark); }
+
+/* ---------------------------- Cart / Total ---------------------------- */
+.cart-section { margin-top: 22px; }
+.cart-section h3 { margin-bottom: 12px; color: var(--blue-dark); }
+
+.total-section { text-align: right; margin: 18px 0; }
+.total-section h2 { color: var(--blue); font-size: 26px; }
+
+.payment-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin: 18px 0;
+}
+.payment-section select {
+    padding: 8px 12px;
+    border: 1px solid #c4d3e0;
+    border-radius: 8px;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.submit-btn:hover { background: #1567c2; }
+.submit-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+/* ---------------------------- Modal ---------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, .45);
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background: var(--blue-soft);
+    padding: 28px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 380px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,.2);
+}
+.close {
+    position: absolute;
+    right: 16px; top: 8px;
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #777;
+}
+.close:hover { color: #000; }
+.modal-content h3 { color: var(--blue-dark); margin-bottom: 16px; }
+.modal-info { margin-bottom: 16px; }
+.modal-info p { margin: 8px 0; font-size: 15px; }
+.modal-input { margin-bottom: 18px; }
+.modal-input label { display: block; margin-bottom: 6px; font-weight: 600; }
+.modal-input input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #b9cadd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+.modal-btn {
+    width: 100%;
+    padding: 11px;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.modal-btn:hover { background: #1567c2; }
+
+/* ---------------------------- History ---------------------------- */
+.history-section h3 { margin-bottom: 10px; color: var(--blue-dark); }
+.history-header { margin-bottom: 14px; }
+.history-header #sessionHeader {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+.role-value { color: var(--gold); font-weight: 700; }
+#historySubtitle { color: #666; font-size: 14px; margin-bottom: 12px; display: block; }
+
+.history-controls { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+.history-controls label { font-weight: 600; color: var(--blue-dark); }
+
+/* ------------------ Form tambah akun (Admin) ------------------ */
+.register-form {
+    margin-top: 12px;
+    padding: 16px;
+    background: var(--blue-soft);
+    border-radius: 10px;
+}
+.register-form h4 { margin-bottom: 12px; color: var(--blue-dark); }
+.register-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.register-grid .field { display: flex; flex-direction: column; gap: 6px; }
+.register-grid .field label { font-size: 13px; font-weight: 600; color: var(--blue-dark); }
+.register-grid .field input,
+.register-grid .field select {
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #b9cadd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+}
+.history-controls input[type="date"] {
+    padding: 8px 10px;
+    border: 1px solid #c4d3e0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+.btn-cari {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.btn-cari:hover { background: #1567c2; }
+
+/* ---------------------------- Pagination ---------------------------- */
+.pager { display: flex; gap: 6px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+.page-btn {
+    min-width: 38px;
+    height: 38px;
+    border: 1px solid #c4d3e0;
+    background: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blue-dark);
+}
+.page-btn:hover { background: var(--blue-soft); }
+.page-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
